@@ -19,7 +19,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 let python_highlight_all=1
-au Filetype python set tabstop=4
 au Filetype python set softtabstop=4
 au Filetype python set shiftwidth=4
 au Filetype python set textwidth=79
