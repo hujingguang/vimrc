@@ -1,3 +1,6 @@
+" 1. 行间快速移动 num+j,k,l,h
+" 2. 格式化: gg+G "
+"
 set nocompatible
 syntax on
 filetype plugin indent on
@@ -122,6 +125,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let python_highlight_all=1
+syntax on
 
 
 "屏幕分割设置,快捷键：ctrl+j,k,l,h,分屏：sv or vs , 打开新文件，vs file_name
@@ -133,11 +138,13 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 "代码折叠设置，快捷键： za 或者 空格键
-Plugin 'LucHermitte/VimFold4C'
-set foldmethod=manual
+"Plugin 'LucHermitte/VimFold4C'
+Plugin 'tmhedberg/SimpylFold'
+set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
 vnoremap <space> zf
+let g:SimpylFold_docstring_preview=1
 
 "配色插件,按F8切换
 Plugin 'altercation/vim-colors-solarized'
@@ -167,5 +174,58 @@ autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,pe
 
 "代码自动补全,需要安装: pip install jedi
 Plugin 'davidhalter/jedi-vim'
- let g:jedi#completions_command = "<Tab>"
+Bundle 'ervandew/supertab'
 
+let g:jedi#completions_command = "<Tab>"
+let g:SuperTabDefaultCompletionType = "context"
+let g:jedi#popup_on_dot = 0
+
+"自动缩进插件
+Plugin 'vim-scripts/indentpython.vim'
+
+"缩进线显示插件
+Plugin 'Yggdroot/indentLine'
+"自动补全括号 
+Plugin 'jiangmiao/auto-pairs'
+"Git集成插件
+Plugin 'tpope/vim-fugitive'
+
+"Python Virtual Env检测
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+	project_base_dir = os.environ['VIRTUAL_ENV']
+	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+	execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+"超级搜索： ctrl+P
+Plugin 'kien/ctrlp.vim'
+
+"类显示
+Plugin 'https://github.com/vim-scripts/taglist.vim.git'
+let Tlist_Use_Right_Window = 1 "右窗口显示
+let Tlist_Use_Right_Window = 1
+
+"美化插件和窗口插件
+Plugin 'vim-airline/vim-airline-themes'
+Bundle 'https://github.com/maksimr/vim-jsbeautify.git'
+Bundle 'Molokai'
+Bundle 'WinManager'
+
+let g:winManagerWindowLayout = "TagList|FileExplorer"
+let g:winManagerWidth = 30
+nmap <silent> <F2> :WMToggle<cr>
+let g:AutoOpenWinManager = 1
+syntax enable
+syntax on
+set t_Co=256
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+let Tlist_Show_One_File = 1 
+let Tlist_Exit_OnlyWindow = 1
+"let Tlist_Use_Right_Window = 1
+let Tlist_Use_Left_Window = 1
+set mouse=a 
+let Tlist_Use_SingleClick=1  
+colorscheme molokai
