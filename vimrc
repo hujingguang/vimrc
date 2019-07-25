@@ -235,3 +235,15 @@ let Tlist_Use_Left_Window = 1
 set mouse=a 
 let Tlist_Use_SingleClick=1  
 colorscheme molokai
+
+
+"目录树增强插件
+Bundle 'jistr/vim-nerdtree-tabs'
+let g:nerdtree_tabs_open_on_console_startup=1
+ map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
+Bundle "jaromero/vim-monokai-refined"
+Bundle "vim-scripts/desert256.vim"
+set t_Co=256
+"colorscheme Monokai-Refined
+colorscheme  desert256
