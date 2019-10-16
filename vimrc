@@ -247,3 +247,5 @@ Bundle "vim-scripts/desert256.vim"
 set t_Co=256
 "colorscheme Monokai-Refined
 colorscheme  desert256
+
+"按住Shift键启用鼠标右键粘贴复制
